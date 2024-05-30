@@ -1,0 +1,40 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Debug-Build",
+			"type": "shell",
+			"group": {
+				"kind": "build",
+				"isDefault": true,
+			},
+			"command": "${workspaceFolder}/scripts/build.bat",
+			"presentation": {
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			}
+		},
+		{
+			"label": "Release-Build",
+			"type": "shell",
+			"group": {
+				"kind": "build",
+				"isDefault": false,
+			},
+			"command": "${workspaceFolder}/scripts/build.bat",
+			"args": ["/r"],
+			"presentation": {
+				"echo": false,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			}
+		}
+	]
+}
