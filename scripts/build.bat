@@ -1,7 +1,5 @@
 @echo off
 
-call clear.bat
-
 set main=%cwd%\source\main.cpp
 
 set debug_args=/Z7 /Od /MTd /DDEBUG_BUILD=1

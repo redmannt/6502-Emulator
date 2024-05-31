@@ -8,6 +8,7 @@ call %clpath% x64
 
 set cwd=C:\Projects\%project%
 set path=%cwd%\scripts;%path%
+set path=%cwd%\scripts\test;%path%
 
 prompt ico@%project%$G
 

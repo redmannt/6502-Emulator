@@ -19,15 +19,15 @@ typedef uint64_t u64;
 
 typedef int32_t  b32;
 
+typedef u8       Byte;
+typedef u16      Word;
+
 #define local_persist static
 #define global_var	  static
 #define internal	  static
 
 #if DEBUG_BUILD
-#define assert(exp) if (!(exp)) {\
-*(i32 *)0 = 0; \
-fprintf(stderr, "\nAssert triggered in file %s, line %d\n", __FILE__, __LINE__); \
-exit(1); }
+#define assert(exp) if (!(exp)) { *(i32 *)0 = 0; }
 #else
 #define assert(exp) 
 #endif
