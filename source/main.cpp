@@ -1,6 +1,6 @@
-// Main
+// Main Entry Point
 
-#include "main.h"
+#include "lib/main_6502.h"
 
 i32 main() {
     CPU cpu;

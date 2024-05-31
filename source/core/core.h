@@ -7,7 +7,7 @@
 #include <vcruntime_string.h>
 #include <stdio.h>
 
-#include "../defines.h"
+#include "../lib/defines.h"
 #include "instructions.h"
 
 // * Defines
@@ -37,7 +37,7 @@ typedef struct CPU
 
     u8 SP;      // Stack Pointer
     u8 A, X, Y; // Registers
-                // Processor status (Bitfield)
+                // Processor Status (Bitfield)
     u8 C : 1;   // Carry Flag
     u8 Z : 1;   // Zero Flag
     u8 I : 1;   // Interrupt Disable Flag
