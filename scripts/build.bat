@@ -15,10 +15,10 @@ set link_args=%common_linker%
 
 if "%1%" EQU "/r" ( 
     set comp_args=%release_args% %comp_args% 
-    echo ~ ~ ~ Release build ~ ~ ~
+    echo ~ Release build ~
 ) else (
-    set comp_args=%debug_args% %comp_args% 
-    echo ~ ~ ~ Debug build ~ ~ ~ 
+    set comp_args=%debug_args% %comp_args%
+    echo ~ Debug build ~ 
 )
 
 pushd %cwd%\build

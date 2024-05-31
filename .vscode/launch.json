@@ -12,9 +12,7 @@
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
-            "environment": [{"name": "DEBUG_BUILD", "value": "1"}],
             "console": "newExternalWindow",
-            "preLaunchTask": "Debug-Build"
         },
         {
             "name": "Release",
@@ -24,9 +22,7 @@
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
-            "environment": [{"name": "DEBUG_BUILD", "value": "0"}],
             "console": "newExternalWindow",
-            "preLaunchTask": "Release-Build"
         },
     ]
 }

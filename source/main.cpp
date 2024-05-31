@@ -3,9 +3,11 @@
 #include "main.h"
 
 i32 main() {
-    printf("Hello, World!\n");
-    printf("Press return key . . . ");
-    scanf_s("blub");
+    CPU cpu;
+    Memory mem;
+
+    reset(&cpu, &mem);
+    execute(&cpu, &mem, 4);
 
     return 0;
 }
