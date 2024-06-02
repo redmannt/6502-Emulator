@@ -2,8 +2,11 @@
 
 // * Includes
 
+#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include "../source/main_6502.h"
+
+#include "../source/lib/defines.h"
 
 // * Defines
 
@@ -18,7 +21,7 @@ typedef enum Test_Flag {
     DEFAULT = -1,
     FAIL = 0,
     SUCCESS = 1
-} Test_Flag;
+} TFlag;
 
 typedef struct Test_Result
 {
@@ -28,4 +31,4 @@ typedef struct Test_Result
 
     b32 expected;
     b32 actual;
-} Test_Result;
+} TResult;
