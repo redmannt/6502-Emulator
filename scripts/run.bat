@@ -1,5 +1,5 @@
 @echo off
 
 pushd %cwd%\build
-main.exe
+%project%.exe
 popd

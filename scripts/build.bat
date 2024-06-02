@@ -2,13 +2,13 @@
 
 set main=%cwd%\source\main.cpp
 
-set debug_args=/Z7 /Od /MTd /DDEBUG_BUILD=1
+set debug_args=/Z7 /Od /MTd /DNDEBUG=1
 set release_args=/O2 /MT /GA /GL /Gw /QIntel-jcc-erratum /Qpar
-set warnings=/W4 /WX /wd4201 /wd4100 /wd4189 /wd4505
+set warnings=/W4 /WX /wd4201 /wd4100 /wd4189 /wd4505 /wd4200
 
 set common_linker=/link /incremental:no /opt:ref
 
-set comp_args=/nologo /Oi /GR- /EHa- /EHsc /FC /fp:fast %warnings%
+set comp_args=/nologo /Oi /GR- /EHa- /EHsc /FC /fp:fast /Fe: %project%.exe %warnings% 
 set link_args=%common_linker%
 
 if "%1%" EQU "/r" ( 

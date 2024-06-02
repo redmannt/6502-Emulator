@@ -19,18 +19,12 @@ typedef uint64_t u64;
 
 typedef int32_t  b32;
 
-typedef u8       Byte;
-typedef u16      Word;
+typedef u8       byte;
+typedef u16      word;
 
 #define local_persist static
 #define global_var	  static
 #define internal	  static
-
-#if DEBUG_BUILD
-#define assert(exp) if (!(exp)) { *(i32 *)0 = 0; }
-#else
-#define assert(exp) 
-#endif
 
 #define invalid_code_path assert(!"Invalid code path")
 

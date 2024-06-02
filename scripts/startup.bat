@@ -2,7 +2,7 @@
 
 set project=6502
 
-set clpath="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall"
+set clpath="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
 
 call %clpath% x64
 

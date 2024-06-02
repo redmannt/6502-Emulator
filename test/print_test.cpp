@@ -47,7 +47,7 @@ print_test_result(Test_Result result) {
     } break;
 
     default:
-        invalid_code_path
+        invalid_code_path;
         break;
     }
 }
