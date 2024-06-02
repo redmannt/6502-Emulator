@@ -2,7 +2,8 @@
 
 // * Includes
 
-#include "../source/lib/main_6502.h"
+#include <stdlib.h>
+#include "../source/main_6502.h"
 
 // * Defines
 
@@ -23,7 +24,7 @@ typedef struct Test_Result
 {
     Test_Flag flag = DEFAULT;
     u32 line;
-    u8 *name;
+    char *name;
 
     b32 expected;
     b32 actual;

@@ -1,7 +1,5 @@
 // Main entry point for test suite
 
-#define _CRT_SECURE_NO_WARNINGS
-
 #include "main_test.h"
 #include "print_test.cpp"
 

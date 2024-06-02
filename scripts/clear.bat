@@ -2,6 +2,7 @@
 
 pushd %cwd%\build
 
-del *.* /q /s > NUL 2> NUL
+del *.pdb /q /s > NUL 2> NUL
+del *.obj /q /s > NUL 2> NUL
 
 popd

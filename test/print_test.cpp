@@ -2,14 +2,16 @@
 
 #include "main_test.h"
 
-inline internal u8*
-copy_test_name(u8* dest, const char *src) {
-    dest = (u8 *)malloc(sizeof(src)+1);
-    return (u8 *)strcpy((char *)dest, src);
+inline internal char*
+copy_test_name(char *dest, const char *src) {
+    u64 size = strlen(src)+1;
+    dest = (char *)malloc(size);
+    strcpy_s(dest, size, src);
+    return dest;
 }
 
 inline internal void
-print_test_stub(u8 *name, u32 line) {
+print_test_stub(const char *name, u32 line) {
     printf(
         "Test Case <%s> on line %d . . . ",
         name, line
@@ -24,13 +26,16 @@ print_test_success(Test_Result result) {
 
 internal void
 print_test_fail(Test_Result result) {
+    internal constexpr char *t = "true";
+    internal constexpr char *f = "false";
+
     print_test_stub(result.name, result.line);
     CMD_TEXT_RED; printf("FAIL!"); CMD_TEXT_RESET;
     printf(" => ");
     CMD_TEXT_YELLOW;
     printf(
-        "Expected: %d, got %d instead\n",
-        result.expected, result.actual
+        "Expected: \'%s\', Actual: \'%s\'\n",
+        result.expected ? t : f, result.actual ? t : f
     );
     CMD_TEXT_RESET;
 }

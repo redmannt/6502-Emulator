@@ -1,9 +1,11 @@
 @echo off
 
+call clear.bat
+
 set main=%cwd%\source\main.cpp
 
-set debug_args=/Z7 /Od /MTd /DNDEBUG=1
-set release_args=/O2 /MT /GA /GL /Gw /QIntel-jcc-erratum /Qpar
+set debug_args=/Z7 /Od /MTd 
+set release_args=/O2 /MT /GA /GL /Gw /Qpar /DNDEBUG=1
 set warnings=/W4 /WX /wd4201 /wd4100 /wd4189 /wd4505 /wd4200
 
 set common_linker=/link /incremental:no /opt:ref

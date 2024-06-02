@@ -2,7 +2,7 @@
 
 set main=%cwd%\test\main_test.cpp
 
-set args=/O2 /MT /GA /GL /Gw /QIntel-jcc-erratum /Qpar
+set args=/Z7 /Od /MTd
 set warnings=/W4 /WX /wd4201 /wd4100 /wd4189 /wd4505 /wd4200
 
 set comp_args=/nologo /Oi /GR- /EHa- /EHsc /FC /fp:fast %warnings%

@@ -12,7 +12,7 @@
 
 // * Structs
 
-typedef struct Buffer_Header {
+typedef struct Stretchy_Buffer_Header {
     size_t len;
     size_t cap;
     char buf[0];
@@ -22,12 +22,14 @@ typedef struct Buffer_Header {
 
 #define buf__hdr(b)     ((BufHdr *)((char *)b - OFFSET(BufHdr, buf)))
 #define buf__fits(b,n)  (buf_len(b) + (n) <= buf_cap(b))
-#define buf__fit(b,n)   (buf__fits(b,n) ? 0 : ((b) = (decltype(b))buf__grow((b), buf_len(b) + (n), sizeof(*(b)))))
+#define buf__fit(b,n)   (buf__fits(b,n) ? \
+                        NULL : \
+                        ((b) = (decltype(b))buf__grow((b), buf_len(b) + (n), sizeof(*(b)))))
 
 #define buf_len(b)      ((b) ? buf__hdr(b)->len : 0)
 #define buf_cap(b)      ((b) ? buf__hdr(b)->cap : 0)
-#define buf_push(b,x)   (buf__fit(b, 1), b[buf_len(b)] = (x), buf__hdr(b)->len++)
-#define buf_free(b)     ((b) ? free(buf__hdr(b)) : NULL)
+#define buf_push(b,x)   (buf__fit(b,1), (b)[buf_len(b)] = (x), buf__hdr(b)->len++)
+#define buf_free(b)     ((b) ? (free(buf__hdr(b)), (b) = NULL) : NULL)
 
 // * Functions
 

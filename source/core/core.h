@@ -12,38 +12,38 @@
 
 // * Defines
 
-#define BIT_MASK_128        (u8)0b10000000
-#define BIT_MASK_LOWER_8    (u8)0xFF
+#define BIT_MASK_128                (byte)0b10000000
+#define BIT_MASK_LOWER_8            (byte)0xFF
 
-#define MAX_MEMORY  kilobytes(64)
+#define MAX_MEMORY                  kilobytes(64)
 
-#define ZERO_PAGE_LOCATION          (u16)0x0000
-#define SYSTEM_STACK_LOCATION       (u16)0x0100
-#define MAIN_MEMORY_LOCATION        (u16)0x0200
-#define INTERRUPT_HANDLER_LOCATION  (u16)0xFFFA
-#define POWER_RESET_LOCATION        (u16)0xFFFC
-#define BRK_LOCATION                (u16)0xFFFE
+#define ZERO_PAGE_LOCATION          (word)0x0000
+#define SYSTEM_STACK_LOCATION       (word)0x0100
+#define MAIN_MEMORY_LOCATION        (word)0x0200
+#define INTERRUPT_HANDLER_LOCATION  (word)0xFFFA
+#define POWER_RESET_LOCATION        (word)0xFFFC
+#define BRK_LOCATION                (word)0xFFFE
 
 // * Structs
 
 typedef struct Memory
 {
-    u8 _data[MAX_MEMORY];   // Memory with size MAX_MEMORY
+    byte data[MAX_MEMORY];   // Memory with size MAX_MEMORY
 } Memory;
 
 typedef struct CPU
 {
-    u16 PC;     // Program Counter
+    word PC;        // Program Counter
 
-    u8 SP;      // Stack Pointer
-    u8 A, X, Y; // Registers
-                // Processor Status (Bitfield)
-    u8 C : 1;   // Carry Flag
-    u8 Z : 1;   // Zero Flag
-    u8 I : 1;   // Interrupt Disable Flag
-    u8 D : 1;   // Decimal Mode Flag
-    u8 B : 1;   // Break Command Flag
-    u8 V : 1;   // Overflow Flag
-    u8 N : 1;   // Negative Flag
-    u8   : 1;   // Unused bit
+    byte SP;        // Stack Pointer
+    byte A, X, Y;   // Registers
+                    // Processor Status (Bitfield)
+    byte C : 1;     // Carry Flag
+    byte Z : 1;     // Zero Flag
+    byte I : 1;     // Interrupt Disable Flag
+    byte D : 1;     // Decimal Mode Flag
+    byte B : 1;     // Break Command Flag
+    byte V : 1;     // Overflow Flag
+    byte N : 1;     // Negative Flag
+    byte   : 1;     // Unused bit
 } CPU;

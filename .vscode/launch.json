@@ -23,6 +23,7 @@
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "console": "newExternalWindow",
+            "preLaunchTask": "Release-Build"
         },
     ]
 }

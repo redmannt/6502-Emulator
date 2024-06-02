@@ -3,6 +3,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <assert.h>
 
 typedef float    f32;
 typedef double   f64;
