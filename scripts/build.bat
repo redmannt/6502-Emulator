@@ -1,7 +1,5 @@
 @echo off
 
-call clear.bat
-
 set main=%cwd%\source\main.cpp
 
 set debug_args=/Z7 /Od /MTd 
@@ -16,6 +14,7 @@ set link_args=%common_linker%
 if "%1%" EQU "/r" ( 
     set comp_args=%release_args% %comp_args% 
     echo ~ Release build ~
+    call clear.bat
 ) else (
     set comp_args=%debug_args% %comp_args%
     echo ~ Debug build ~ 

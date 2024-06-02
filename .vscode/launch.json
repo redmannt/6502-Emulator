@@ -25,5 +25,16 @@
             "console": "newExternalWindow",
             "preLaunchTask": "Release-Build"
         },
+        {
+            "name": "Test",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test/6502_test.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "console": "newExternalWindow",
+            "preLaunchTask": "Test-Build"
+        },
     ]
 }

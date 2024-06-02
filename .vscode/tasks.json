@@ -33,6 +33,22 @@
 				"showReuseMessage": false,
 				"clear": true
 			}
+		},
+		{
+			"label": "Test-Build",
+			"type": "shell",
+			"group": {
+				"kind": "build",
+				"isDefault": false,
+			},
+			"command": "${workspaceFolder}/scripts/test/build_test.bat",
+			"presentation": {
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			}
 		}
 	]
 }

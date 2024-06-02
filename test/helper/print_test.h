@@ -4,18 +4,19 @@
 
 #include "../main_test.h"
 
-// * Inline
-
-inline internal void
-print_test_stub(const char *name, u32 line) {
-    printf("Test Case <%s> on line %d . . . ",
-            name, line);
+internal void
+print_test_stub(const char *name, 
+                u32 line) {
+    printf("Test Case <"); 
+    CMD_TEXT_CYAN;    printf("%s", name);  CMD_TEXT_RESET;     
+    printf("> on line ");
+    CMD_TEXT_MAGENTA; printf("%d ", line); CMD_TEXT_RESET;
+    printf(". . . ");
 }
 
-// * Functions
-
 internal char*
-copy_test_name(char *dest, const char *src) {
+copy_test_name(char *dest, 
+               const char *src) {
     u64 size = strlen(src)+1;
     dest = (char *)malloc(size);
     strcpy_s(dest, size, src);
@@ -57,5 +58,5 @@ print_test_result(TResult result) {
         break;
     }
 
-    free(result.name);
+    easy_free(result.name);
 }
