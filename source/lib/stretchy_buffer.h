@@ -8,7 +8,7 @@
 // * Utility
 
 #define max(x,y)        ((x) >= (y)) ? (x) : (y)   
-#define offeset(s,m)    ((size_t)&(((s*)0)->m))
+#define offset(s,m)     ((size_t)&(((s*)0)->m))
 
 #define easy_malloc(x)  (decltype(x))malloc(sizeof(decltype(*x))); assert(x)
 #define easy_free(x)     assert(x); (free(x), x = NULL)    
@@ -21,17 +21,17 @@ typedef struct Stretchy_Buffer_Header {
     char buf[0];
 } BufHdr;    
 
-#define buf__hdr(b)     ((BufHdr *)((char *)b - offeset(BufHdr, buf)))
+#define buf__hdr(b) ((BufHdr *)((char *)b - offset(BufHdr, buf)))
 
-#define buf_len(b)      ((b) ? buf__hdr(b)->len : 0)
-#define buf_cap(b)      ((b) ? buf__hdr(b)->cap : 0)
+#define buf_len(b)  ((b) ? buf__hdr(b)->len : 0)
+#define buf_cap(b)  ((b) ? buf__hdr(b)->cap : 0)
 
 void * 
 buf__grow(const void *buf, 
           size_t new_len, 
           size_t elem_size) {
     size_t new_cap = max(1 + 2 * buf_cap(buf), new_len);
-    size_t new_size = offeset(BufHdr, buf) + new_cap * elem_size;
+    size_t new_size = offset(BufHdr, buf) + new_cap * elem_size;
     assert(new_len <= new_cap);
     
     BufHdr *new_hdr;

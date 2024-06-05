@@ -6,11 +6,11 @@
 
 // * Stub
 
-inline internal TResult
-test_result_stub(TResult *result,
+inline internal Test_Result
+test_result_stub(Test_Result *result,
                  const char *name, 
                  const u32 line,
-                 b32 expected) {
+                 const b32 expected) {
     result->name = copy_test_name(result->name, name);
     result->expected = expected;
     result->line = line;
@@ -19,118 +19,128 @@ test_result_stub(TResult *result,
 
 // * TEST_TRUE
 
-internal TResult
+internal Test_Result
 test_true(const b32 val, 
           const char *name, 
           const u32 line) {
-    TResult result = test_result_stub(&result, name, line, true);
-    result.actual  = val;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, true);
+    result.actual = val;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }
 
 // * TEST_FALSE
 
-internal TResult
+internal Test_Result
 test_false(const b32 val, 
            const char *name, 
            const u32 line) {
-    TResult result = test_result_stub(&result, name, line, false);
-    result.actual  = val;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, false);
+    result.actual = val;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }
 
 // * TEST_EQ
 
-internal TResult
+internal Test_Result
 test_equals(const bool val1, const bool val2, 
             const char *name, 
             const u32 line) {
-    TResult result = test_result_stub(&result, name, line, true);
-    result.actual  = val1 == val2;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, true);
+    result.actual = val1 == val2;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }
 
-internal TResult
+internal Test_Result
 test_equals(const i64 val1, const i64 val2, 
             const char *name, 
             const u32 line) {
-    TResult result = test_result_stub(&result, name, line, true);
-    result.actual  = val1 == val2;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, true);
+    result.actual = val1 == val2;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }
 
-internal TResult
+internal Test_Result
 test_equals(const u64 val1, const u64 val2, 
             const char *name, 
             const u32 line) {
-    TResult result = test_result_stub(&result, name, line, true);
-    result.actual  = val1 == val2;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, true);
+    result.actual = val1 == val2;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }
 
-internal TResult
+internal Test_Result
 test_equals(const void *val1, const void *val2, 
             const char *name, 
             const u32 line) {
-    TResult result = test_result_stub(&result, name, line, true);
-    result.actual  = val1 == val2;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, true);
+    result.actual = val1 == val2;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }
 
 // * TEST_NEQ
 
-internal TResult
+internal Test_Result
 test_not_equals(const bool val1, const bool val2, 
                 const char *name, 
                 const u32 line) {
-    TResult result = test_result_stub(&result, name, line, false);
-    result.actual  = val1 == val2;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, false);
+    result.actual = val1 == val2;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }
 
-internal TResult
+internal Test_Result
 test_not_equals(const i64 val1, const i64 val2, 
                 const char *name, 
                 const u32 line) {
-    TResult result = test_result_stub(&result, name, line, false);
-    result.actual  = val1 == val2;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, false);
+    result.actual = val1 == val2;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }
 
-internal TResult
+internal Test_Result
 test_not_equals(const u64 val1, const u64 val2, 
                 const char *name, 
                 const u32 line) {
-    TResult result = test_result_stub(&result, name, line, false);
-    result.actual  = val1 == val2;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, false);
+    result.actual = val1 == val2;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }
 
-internal TResult
+internal Test_Result
 test_not_equals(const void *val1, const void *val2, 
                 const char *name, 
                 const u32 line) {
-    TResult result = test_result_stub(&result, name, line, false);
-    result.actual  = val1 == val2;
-    result.flag    = (TFlag)(result.actual == result.expected);
+    Test_Result result;
+    result = test_result_stub(&result, name, line, false);
+    result.actual = val1 == val2;
+    result.flag   = (Test_Flag)(result.actual == result.expected);
 
     return result;
 }

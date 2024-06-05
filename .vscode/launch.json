@@ -23,7 +23,6 @@
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "console": "newExternalWindow",
-            "preLaunchTask": "Release-Build"
         },
         {
             "name": "Test",
@@ -34,7 +33,6 @@
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "console": "newExternalWindow",
-            "preLaunchTask": "Test-Build"
         },
     ]
 }

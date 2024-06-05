@@ -17,6 +17,16 @@ void cpu_test() {
     execute(&cpu, &mem, 4);
     assert(cpu.A == 0x37);
 
+    reset(&cpu, &mem);
+
+    mem.data[MAIN_MEMORY_LOCATION]   = INS_LDA_IM;
+    mem.data[MAIN_MEMORY_LOCATION+1] = 0xFF;
+
+    execute(&cpu, &mem, 2);
+
+    assert(cpu.A == 0xFF);
+    assert(cpu.N == 1);
+
     printf(" ~ ~ ~ Success! ~ ~ ~\n");
 }
 

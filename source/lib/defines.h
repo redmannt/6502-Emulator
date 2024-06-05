@@ -23,6 +23,8 @@ typedef int32_t  b32;
 typedef u8       byte;
 typedef u16      word;
 
+typedef size_t   s_t;
+
 #define local_persist static
 #define global_var	  static
 #define internal	  static

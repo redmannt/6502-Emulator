@@ -4,9 +4,24 @@
 
 #include "../main_test.h"
 
+// * Constants
+
+global_var constexpr s_t MAX_LENGTH_TEST_NAME = 50;
+
+// * Functions
+
+internal char*
+copy_test_name(char *dest, 
+               const char *src) {
+    s_t size = strnlen_s(src, MAX_LENGTH_TEST_NAME)+1;
+    dest = (char *)malloc(size);
+    strcpy_s(dest, size, src);
+    return dest;
+}
+
 internal void
 print_test_stub(const char *name, 
-                u32 line) {
+                const u32 line) {
     printf("Test Case <"); 
     CMD_TEXT_CYAN;    printf("%s", name);  CMD_TEXT_RESET;     
     printf("> on line ");
@@ -14,23 +29,14 @@ print_test_stub(const char *name,
     printf(". . . ");
 }
 
-internal char*
-copy_test_name(char *dest, 
-               const char *src) {
-    u64 size = strlen(src)+1;
-    dest = (char *)malloc(size);
-    strcpy_s(dest, size, src);
-    return dest;
-}
-
 internal void
-print_test_success(TResult result) {
+print_test_success(Test_Result result) {
     print_test_stub(result.name, result.line);
     CMD_TEXT_GREEN; printf("SUCCESS!\n"); CMD_TEXT_RESET;
 }
 
 internal void
-print_test_fail(TResult result) {
+print_test_fail(Test_Result result) {
     local_persist constexpr char *t = "true";
     local_persist constexpr char *f = "false";
 
@@ -44,13 +50,13 @@ print_test_fail(TResult result) {
 }
 
 internal void
-print_test_result(TResult result) {
+print_test_result(Test_Result result) {
     switch (result.flag) {
-    case FAIL: {
-        print_test_fail(result);
-    } break;
     case SUCCESS: {
         print_test_success(result);
+    } break;
+    case FAIL: {
+        print_test_fail(result);
     } break;
 
     default:
