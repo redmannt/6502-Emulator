@@ -26,13 +26,11 @@ global_var constexpr word BRK_LOCATION               = (word)0xFFFE;
 
 // * Structs
 
-typedef struct Memory
-{
+typedef struct Memory {
     byte data[MAX_MEMORY];   // Memory with size MAX_MEMORY
 } Memory;
 
-typedef struct CPU
-{
+typedef struct CPU {
     word PC;        // Program Counter
 
     byte SP;        // Stack Pointer

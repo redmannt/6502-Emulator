@@ -49,7 +49,7 @@ write_word(Memory *mem,
            word val,
            word adr,
            u32 *cycles) {
-    mem->data[adr]   = val & BIT_MASK_LOWER_8;
+    mem->data[adr]   =  val & BIT_MASK_LOWER_8;
     mem->data[adr+1] = (val >> 8); 
     (*cycles) -= 2;
 }
@@ -59,8 +59,8 @@ push_stack_word(Memory *mem,
            byte *sp,
            word val,
            u32 *cycles) {
-    write_word(mem, val, SYSTEM_STACK_LOCATION + *sp, cycles);
-    (*sp) += 2;
+    write_word(mem, val, SYSTEM_STACK_LOCATION + (*sp)-1, cycles);
+    (*sp) -= 2;
 }
 
 // * Functions
@@ -76,11 +76,8 @@ reset(CPU* cpu,
     memset(cpu, 0, sizeof(CPU));
 
     cpu->PC = POWER_RESET_LOCATION;
-/*
-//  cpu->SP = (byte)(SYSTEM_STACK_LOCATION & BIT_MASK_LOWER_8);    
-    We could set the stack pointer to the lower 8 bits of the system stack address, 
-    but that would be 0, which SP already is...
-*/
+    cpu->SP = (byte)0xFF;    
+
     init_memory(mem);
 
     cpu->PC = MAIN_MEMORY_LOCATION;
@@ -91,34 +88,34 @@ execute(CPU *cpu,
        Memory *mem,
        u32 cycles) {
     while (cycles > 0) {
-        byte ins = fetch_byte(cpu, mem, &cycles);
+        byte ins = fetch_byte(cpu, mem, &cycles);                       // 1 cycle
         
         switch (ins){
         case INS_LDA_IM: {
-            byte val = fetch_byte(cpu, mem, &cycles);
+            byte val = fetch_byte(cpu, mem, &cycles);                   // 1 cydle
             cpu->A = val;
             set_lda_flags(cpu, val);
         } break;
         case INS_LDA_ZP: {
-            byte zpa = fetch_byte(cpu, mem, &cycles);
-            cpu->A = peek_byte(mem, zpa, &cycles);
+            byte zpa = fetch_byte(cpu, mem, &cycles);                   // 1 cycle
+            cpu->A = peek_byte(mem, zpa, &cycles);                      // 1 cycle
             set_lda_flags(cpu, cpu->A);
         } break;
         case INS_LDA_ZPX: {
-            byte zpa = fetch_byte(cpu, mem, &cycles);
-            zpa += cpu->X; cycles--; // @Robustness: Handle overflow
-            cpu->A = peek_byte(mem, zpa, &cycles);
+            byte zpa = fetch_byte(cpu, mem, &cycles);                   // 1 cycle
+            zpa += cpu->X; cycles--; // @Robustness: Handle overflow;      1 cycle
+            cpu->A = peek_byte(mem, zpa, &cycles);                      // 1 cycle
             set_lda_flags(cpu, cpu->A);
         } break;
         case INS_JSR_A: {
-            word sub_adr = fetch_word(cpu, mem, &cycles);
-            push_stack_word(mem, &cpu->SP, cpu->PC-1, &cycles);
+            word sub_adr = fetch_word(cpu, mem, &cycles);               // 2 cycles
+            push_stack_word(mem, &cpu->SP, cpu->PC-1, &cycles);         // 2 cycles
             cpu->PC = sub_adr;
-            cycles--;
+            cycles--;                                                   // 1 cycle
         } break;
 
         default: {
-            printf("Unknown ins: %d\n", ins);
+            printf("Unknown instruction: %d\n", ins);
             invalid_code_path;
         } break;
         }

@@ -8,7 +8,7 @@
 // * Utility
 
 #define max(x,y)        ((x) >= (y)) ? (x) : (y)   
-#define offset(s,m)     ((size_t)&(((s*)0)->m))
+#define offset(s,m)     ((s_t)&(((s*)0)->m))
 
 #define easy_malloc(x)  (decltype(x))malloc(sizeof(decltype(*x))); assert(x)
 #define easy_free(x)     assert(x); (free(x), x = NULL)    
@@ -16,8 +16,8 @@
 // * Structs
 
 typedef struct Stretchy_Buffer_Header {
-    size_t len;
-    size_t cap;
+    s_t len;
+    s_t cap;
     char buf[0];
 } BufHdr;    
 
@@ -28,10 +28,10 @@ typedef struct Stretchy_Buffer_Header {
 
 void * 
 buf__grow(const void *buf, 
-          size_t new_len, 
-          size_t elem_size) {
-    size_t new_cap = max(1 + 2 * buf_cap(buf), new_len);
-    size_t new_size = offset(BufHdr, buf) + new_cap * elem_size;
+          s_t new_len, 
+          s_t elem_size) {
+    s_t new_cap  = max(1 + 2 * buf_cap(buf), new_len);
+    s_t new_size = offset(BufHdr, buf) + new_cap * elem_size;
     assert(new_len <= new_cap);
     
     BufHdr *new_hdr;
@@ -48,10 +48,10 @@ buf__grow(const void *buf,
     return new_hdr->buf; 
 }
 
-#define buf__fits(b,n)  (buf_len(b) + (n) <= buf_cap(b))
-#define buf__fit(b,n)   (buf__fits(b,n) ? \
-                        NULL : \
-                        ((b) = (decltype(b))buf__grow((b), buf_len(b) + (n), sizeof(*(b)))))
+#define buf__fits(b,n) (buf_len(b) + (n) <= buf_cap(b))
+#define buf__fit(b,n)  (buf__fits(b,n) ? \
+                       NULL : \
+                       ((b) = (decltype(b))buf__grow((b), buf_len(b) + (n), sizeof(*(b)))))
 
-#define buf_push(b,x)   (buf__fit(b,1), (b)[buf_len(b)] = (x), buf__hdr(b)->len++)
-#define buf_free(b)     ((b) ? (free(buf__hdr(b)), (b) = NULL) : NULL)
+#define buf_push(b,x)  (buf__fit(b,1), (b)[buf_len(b)] = (x), buf__hdr(b)->len++)
+#define buf_free(b)    ((b) ? (free(buf__hdr(b)), (b) = NULL) : NULL)

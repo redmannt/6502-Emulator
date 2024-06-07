@@ -25,7 +25,7 @@ print_test_stub(const char *name,
     printf("Test Case <"); 
     CMD_TEXT_CYAN;    printf("%s", name);  CMD_TEXT_RESET;     
     printf("> on line ");
-    CMD_TEXT_MAGENTA; printf("%d ", line); CMD_TEXT_RESET;
+    CMD_TEXT_CYAN; printf("%d ", line); CMD_TEXT_RESET;
     printf(". . . ");
 }
 
