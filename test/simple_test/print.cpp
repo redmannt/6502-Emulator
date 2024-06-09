@@ -2,14 +2,19 @@
 
 #pragma once
 
-#include "../main_test.h"
+#include "base.h"
 
+namespace Test_Lib {
+
+#if 0
 // * Constants
 
-global_var constexpr s_t MAX_LENGTH_TEST_NAME = 50;
+global constexpr s_t MAX_LENGTH_TEST_NAME = 50;
 
 // * Functions
 
+/// @attention Funtion allocates memory
+/// @return Pointer to copied string. Please free!
 internal char*
 copy_test_name(char *dest, 
                const char *src) {
@@ -22,9 +27,9 @@ copy_test_name(char *dest,
 internal void
 print_test_stub(const char *name, 
                 const u32 line) {
-    printf("Test Case <"); 
-    CMD_TEXT_CYAN;    printf("%s", name);  CMD_TEXT_RESET;     
-    printf("> on line ");
+    printf("Test Case "); 
+    CMD_TEXT_CYAN; printf("%s", name);  CMD_TEXT_RESET;     
+    printf(" on line ");
     CMD_TEXT_CYAN; printf("%d ", line); CMD_TEXT_RESET;
     printf(". . . ");
 }
@@ -32,23 +37,24 @@ print_test_stub(const char *name,
 internal void
 print_test_success(Test_Result result) {
     print_test_stub(result.name, result.line);
-    CMD_TEXT_GREEN; printf("SUCCESS!\n"); CMD_TEXT_RESET;
+    CMD_TEXT_GREEN; printf("SUCCESS\n"); CMD_TEXT_RESET;
 }
 
 internal void
 print_test_fail(Test_Result result) {
-    local_persist constexpr char *t = "true";
-    local_persist constexpr char *f = "false";
+    // local constexpr char *t = "true";
+    // local constexpr char *f = "false";
 
     print_test_stub(result.name, result.line);
-    CMD_TEXT_RED; printf("FAIL!"); CMD_TEXT_RESET;
-    printf(" => ");
+    CMD_TEXT_RED; printf("FAIL"); CMD_TEXT_RESET;
+    printf(" >> ");
     CMD_TEXT_YELLOW;
-    printf("Expected: \'%s\', Actual: \'%s\'\n",
-            result.expected ? t : f, result.actual ? t : f);
+    printf("Expected: \'%d\', Actual: \'%d\'\n",
+            result.expected, result.actual);
     CMD_TEXT_RESET;
 }
 
+/// @attention Frees memory allocated by test_stub_result 
 internal void
 print_test_result(Test_Result result) {
     switch (result.flag) {
@@ -61,8 +67,10 @@ print_test_result(Test_Result result) {
 
     default:
         invalid_code_path;
-        break;
     }
 
     easy_free(result.name);
+}
+#endif
+
 }

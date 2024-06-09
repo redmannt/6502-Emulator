@@ -4,7 +4,7 @@
 
 // * Includes
 
-#include <vcruntime_string.h>
+#include <string.h>
 #include <stdio.h>
 
 #include "../lib/defines.h"
@@ -12,17 +12,17 @@
 
 // * Constants
 
-global_var constexpr byte BIT_MASK_128     = (byte)0b10000000;
-global_var constexpr byte BIT_MASK_LOWER_8 = (byte)0xFF;
+global constexpr byte BIT_MASK_128     = (byte)0b10000000;
+global constexpr byte BIT_MASK_LOWER_8 = (byte)0xFF;
 
-global_var constexpr word MAX_MEMORY = (word)0xFFFF;
+global constexpr word MAX_MEMORY = (word)0xFFFF;
 
-global_var constexpr word ZERO_PAGE_LOCATION         = (word)0x0000;
-global_var constexpr word SYSTEM_STACK_LOCATION      = (word)0x0100;
-global_var constexpr word MAIN_MEMORY_LOCATION       = (word)0x0200;
-global_var constexpr word INTERRUPT_HANDLER_LOCATION = (word)0xFFFA;
-global_var constexpr word POWER_RESET_LOCATION       = (word)0xFFFC;
-global_var constexpr word BRK_LOCATION               = (word)0xFFFE;
+global constexpr word ZERO_PAGE_LOCATION         = (word)0x0000;
+global constexpr word SYSTEM_STACK_LOCATION      = (word)0x0100;
+global constexpr word MAIN_MEMORY_LOCATION       = (word)0x0200;
+global constexpr word INTERRUPT_HANDLER_LOCATION = (word)0xFFFA;
+global constexpr word POWER_RESET_LOCATION       = (word)0xFFFC;
+global constexpr word BRK_LOCATION               = (word)0xFFFE;
 
 // * Structs
 

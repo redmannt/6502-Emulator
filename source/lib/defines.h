@@ -4,6 +4,7 @@
 
 #include <stdint.h>
 #include <assert.h>
+#include <stdio.h>
 
 typedef float    f32;
 typedef double   f64;
@@ -25,9 +26,9 @@ typedef u16      word;
 
 typedef size_t   s_t;
 
-#define local_persist static
-#define global_var	  static
-#define internal	  static
+#define local    static
+#define global   static
+#define internal static
 
 #define invalid_code_path assert(!"Invalid code path")
 
@@ -37,3 +38,12 @@ typedef size_t   s_t;
 #define megabytes(x) (kilobytes(x) * 1024)
 #define gigabytes(x) (megabytes(x) * 1024LL)
 #define terabytes(x) (gigabytes(x) * 1024LL)
+
+// * Defines
+
+#define CMD_TEXT_RED     printf("\x1b[31m")
+#define CMD_TEXT_GREEN   printf("\x1b[32m")
+#define CMD_TEXT_YELLOW  printf("\x1b[33m")
+#define CMD_TEXT_MAGENTA printf("\x1b[35m")
+#define CMD_TEXT_CYAN    printf("\x1b[36m")
+#define CMD_TEXT_RESET   printf("\x1b[m")

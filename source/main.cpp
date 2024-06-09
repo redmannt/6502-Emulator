@@ -1,6 +1,6 @@
 // Main Entry Point
 
-#include "main_6502.h"
+#include "main.h"
 
 void cpu_test() {
     printf("Testing 6502 processor . . .\n");
